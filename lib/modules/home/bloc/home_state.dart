@@ -1,17 +1,17 @@
-import 'package:footybin/modules/home/models/team_standing.dart';
+import 'package:footybin/modules/home/model/team_standing.dart';
 
 abstract class HomeState {}
 
-class HomeInitial extends HomeState {}
+class HomeInitialState extends HomeState {}
 
-class HomeLoading extends HomeState {}
+class HomeLoadingState extends HomeState {}
 
-class HomeLoaded extends HomeState {
+class HomeSuccessState extends HomeState {
   final List<TeamStanding> standings;
-  HomeLoaded(this.standings);
+  HomeSuccessState(this.standings);
 }
 
-class HomeError extends HomeState {
+class HomeErrorState extends HomeState {
   final String message;
-  HomeError(this.message);
+  HomeErrorState(this.message);
 }

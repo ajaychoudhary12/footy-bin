@@ -1,5 +1,5 @@
-import 'package:footybin/modules/home/models/match_stats.dart';
-import 'package:footybin/modules/home/models/team.dart';
+import 'package:footybin/modules/home/model/match_stats.dart';
+import 'package:footybin/modules/home/model/team.dart';
 
 class TeamStanding {
   final int rank;

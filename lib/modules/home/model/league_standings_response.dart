@@ -1,4 +1,4 @@
-import 'package:footybin/modules/home/models/league.dart';
+import 'package:footybin/modules/home/model/league.dart';
 
 class LeagueStandingsResponse {
   final League league;

@@ -1,4 +1,4 @@
-import 'package:footybin/modules/home/models/team_standing.dart';
+import 'package:footybin/modules/home/model/team_standing.dart';
 
 class League {
   final int id;
