@@ -18,19 +18,20 @@ class League {
   });
 
   factory League.fromJson(Map<String, dynamic> json) {
-    final List<dynamic> list = json['standings'];
-    final standings = list.isNotEmpty
-        ? (list.first as List<dynamic>)
+    final standingsList = json['standings'] as List<dynamic>?;
+
+    final standings = (standingsList != null && standingsList.isNotEmpty)
+        ? (standingsList.first as List<dynamic>)
               .map((item) => TeamStanding.fromJson(item))
               .toList()
         : <TeamStanding>[];
 
     return League(
-      id: json['id'],
-      name: json['name'],
-      country: json['country'],
-      logo: json['logo'],
-      season: json['season'],
+      id: json['id'] ?? 0,
+      name: json['name'] ?? '',
+      country: json['country'] ?? '',
+      logo: json['logo'] ?? '',
+      season: json['season'] ?? 0,
       standings: standings,
     );
   }
