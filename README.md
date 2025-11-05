@@ -1,16 +1,32 @@
-# footybin
+# ⚽ FootyBin
 
-A new Flutter project.
+A Flutter app for viewing **English Premier League** stats — built with a clean architecture, network layer abstraction, and modern UI inspired by Football Manager and SofaScore.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📊 **Live League Standings**
+  - Displays Premier League table with club info, points, wins, draws, and losses.
+- 🏟️ **Team Details**
+  - Shows each team’s season statistics (fixtures, goals, form, etc.)
+- 🎨 **Custom Dark Theme**
+  - Purple-tinted modern dark UI inspired by Football Manager 2024.
+- 🧩 **Modular Architecture**
+  - Organized by `modules/` with repositories, models, and views separated.
+- 🌐 **API Integration**
+  - Uses [API-Sports Football API](https://www.api-football.com/) for real-time data.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🏗️ Tech Stack
+
+- **Framework:** Flutter 3.x
+- **State Management:** BLoC (planned)
+- **Networking:** `http` package with a reusable `NetworkService`
+- **Dependency Injection:** `get_it`
+- **JSON Parsing:** Factory constructors with null-safety
+- **UI:** Material 3 + Custom `AppColors` design system
+
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-05 at 18 16 48" src="https://github.com/user-attachments/assets/4b3ca51a-b47b-45cb-9435-91b939b9eeb5" />
+<img width="1206" height="2622" alt="Simulator Screenshot - iPhone 16 Pro - 2025-11-05 at 18 16 51" src="https://github.com/user-attachments/assets/95e18fe3-496d-47c7-915d-5c20f33cbf3f" />
