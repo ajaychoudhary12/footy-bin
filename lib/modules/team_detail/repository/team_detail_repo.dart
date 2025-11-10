@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:footybin/common/api/network_service.dart';
 import 'package:footybin/modules/team_detail/model/team_detail_response.dart';
 
@@ -25,8 +23,6 @@ class TeamDetailRepositoryImpl extends TeamDetailRepository {
       "/teams/statistics",
       params: {"league": leagueId, "season": season, "team": teamId},
     );
-
-    log("jsonMap: $jsonMap");
 
     return TeamStatisticsResponse.fromJson(jsonMap);
   }

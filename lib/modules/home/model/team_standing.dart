@@ -1,9 +1,9 @@
 import 'package:footybin/modules/home/model/match_stats.dart';
-import 'package:footybin/modules/home/model/team.dart';
+import 'package:footybin/modules/home/model/team_response.dart';
 
 class TeamStanding {
   final int rank;
-  final Team team;
+  final TeamResponse team;
   final int points;
   final MatchStats stats;
 
@@ -17,7 +17,7 @@ class TeamStanding {
   factory TeamStanding.fromJson(Map<String, dynamic> json) {
     return TeamStanding(
       rank: json['rank'],
-      team: Team.fromJson(json['team']),
+      team: TeamResponse.fromJson(json['team']),
       points: json['points'],
       stats: MatchStats.fromJson(json['all']),
     );
