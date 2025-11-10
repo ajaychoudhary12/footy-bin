@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:footybin/common/constants/string_constants.dart';
 import 'package:footybin/common/design_system/colors.dart';
+import 'package:footybin/di/di.dart';
+import 'package:footybin/modules/favourites/data/team_entity.dart';
+import 'package:footybin/modules/favourites/repository/favourites_repository.dart';
 import 'package:footybin/modules/team_detail/bloc/team_detail_bloc.dart';
 import 'package:footybin/modules/team_detail/bloc/team_detail_event.dart';
 import 'package:footybin/modules/team_detail/bloc/team_detail_state.dart';
@@ -32,6 +35,8 @@ class TeamDetailPage extends StatefulWidget {
 }
 
 class _TeamDetailPageState extends State<TeamDetailPage> {
+  final service = getIt<FavouritesRepository>();
+
   @override
   void initState() {
     super.initState();
@@ -51,12 +56,30 @@ class _TeamDetailPageState extends State<TeamDetailPage> {
       appBar: AppBar(
         title: const Text(""),
         backgroundColor: AppColors.background,
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.white),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.bookmark_outline),
-            color: Colors.white,
-            onPressed: () {},
+          BlocBuilder<TeamDetailBloc, TeamDetailState>(
+            builder: (context, state) {
+              if (state is TeamDetailSuccessState) {
+                final teamId = state.teamStats.team.id;
+                return IconButton(
+                  icon: _getFavIcon(teamId),
+                  color: Colors.white,
+                  onPressed: () {
+                    service.toggleFavourite(
+                      TeamEntity(
+                        id: state.teamStats.team.id,
+                        name: state.teamStats.team.name,
+                        logo: state.teamStats.team.logo,
+                      ),
+                    );
+                    setState(() {});
+                  },
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
         ],
       ),
@@ -76,9 +99,7 @@ class _TeamDetailPageState extends State<TeamDetailPage> {
               ),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(color: Colors.white),
-            );
+            return const SizedBox();
           }
         },
       ),
@@ -231,6 +252,14 @@ class _TeamDetailPageState extends State<TeamDetailPage> {
         ],
       ),
     );
+  }
+
+  Widget _getFavIcon(int teamId) {
+    if (service.isFavourite(teamId)) {
+      return Icon(Icons.bookmark);
+    } else {
+      return Icon(Icons.bookmark_outline);
+    }
   }
 
   List<String> _getFormText(String form) {

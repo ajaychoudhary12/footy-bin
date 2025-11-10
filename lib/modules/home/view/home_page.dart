@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:footybin/common/constants/api_constants.dart';
 import 'package:footybin/common/constants/string_constants.dart';
 import 'package:footybin/common/design_system/colors.dart';
-import 'package:footybin/main.dart';
+import 'package:footybin/di/di.dart';
 import 'package:footybin/modules/home/bloc/home_bloc.dart';
 import 'package:footybin/modules/home/bloc/home_event.dart';
 import 'package:footybin/modules/home/bloc/home_state.dart';
@@ -24,7 +24,10 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<HomeBloc>().add(
-        FetchLeagueTableEvent(leagueId: APIConstants.leagueId, season: APIConstants.season),
+        FetchLeagueTableEvent(
+          leagueId: APIConstants.leagueId,
+          season: APIConstants.season,
+        ),
       );
     });
   }
@@ -111,14 +114,20 @@ class _HomePageState extends State<HomePage> {
           } else {
             final teamStanding = standings[index - 1];
 
-            return GestureDetector(
+            return InkWell(
               child: _teamStandingItemView(teamStanding),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>
-                        BlocProvider(create: (context) => getIt<TeamDetailBloc>(), child: TeamDetailPage(teamId: teamStanding.team.id, leagueId: APIConstants.leagueId, season: APIConstants.season,)),
+                    builder: (context) => BlocProvider(
+                      create: (context) => getIt<TeamDetailBloc>(),
+                      child: TeamDetailPage(
+                        teamId: teamStanding.team.id,
+                        leagueId: APIConstants.leagueId,
+                        season: APIConstants.season,
+                      ),
+                    ),
                   ),
                 );
               },
@@ -131,7 +140,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _teamStandingItemView(TeamStanding teamStanding) {
     return Container(
-      height: 36,
+      height: 40,
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
       child: Row(
         children: [

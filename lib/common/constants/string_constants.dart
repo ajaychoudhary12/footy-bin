@@ -20,4 +20,7 @@ class AppStrings {
   static const String total = "Total";
   static const String home = "Home";
   static const String away = "Away";
+
+  static const String noFavourites = "No favourites yet!";
+  static const String addTeamFromHomeScreen = "Add teams from the home screen.";
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:footybin/common/design_system/colors.dart';
 
 class FormBadge extends StatelessWidget {
   final String result;
